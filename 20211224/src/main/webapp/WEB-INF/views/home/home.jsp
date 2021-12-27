@@ -12,8 +12,8 @@
 			<h1>Wellcome to my Home</h1>
 		</div>
 		<div>
-			<a href="memberList.do">멤버목록보기</a>
-			<a href="memberJoinForm.do">멤버가입</a>
+			<a href="memberList.do"> 회원목록보기</a>
+			<a href="memberJoinForm.do">회원가입</a>
 		</div>
 	</div>
 </body>

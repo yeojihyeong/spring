@@ -18,6 +18,7 @@ import co.micol.grj.member.command.AjaxIdCheck;
 import co.micol.grj.member.command.MemberJoinForm;
 import co.micol.grj.member.command.MemberList;
 import co.micol.grj.member.command.MemberSelect;
+import co.micol.grj.member.command.memberJoin;
 
 
 
@@ -33,6 +34,7 @@ public class FrontController extends HttpServlet {
 		map.put("/memberSelect.do", new MemberSelect()); //회원상세조회
 		map.put("/ajaxIdCheck.do", new AjaxIdCheck()); //아이디 중복체크
 		map.put("/memberJoinForm.do", new MemberJoinForm()); //회원가입
+		map.put("/memberJoin.do", new memberJoin());
     }
 
 
