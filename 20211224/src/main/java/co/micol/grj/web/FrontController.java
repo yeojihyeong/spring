@@ -1,6 +1,7 @@
 package co.micol.grj.web;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import co.micol.grj.comm.Command;
 import co.micol.grj.home.command.HomeCommand;
+import co.micol.grj.member.command.AjaxIdCheck;
+import co.micol.grj.member.command.MemberJoinForm;
 import co.micol.grj.member.command.MemberList;
 import co.micol.grj.member.command.MemberSelect;
 
@@ -27,7 +30,9 @@ public class FrontController extends HttpServlet {
         super();
         map.put("/home.do", new HomeCommand()); //home.do가 요청되면 HomeCommand의 초기값을 리턴
 		map.put("/memberList.do", new MemberList()); //회원목록보기
-		map.put("/memberSelect.do", new MemberSelect());
+		map.put("/memberSelect.do", new MemberSelect()); //회원상세조회
+		map.put("/ajaxIdCheck.do", new AjaxIdCheck()); //아이디 중복체크
+		map.put("/memberJoinForm.do", new MemberJoinForm()); //회원가입
     }
 
 
@@ -48,6 +53,14 @@ public class FrontController extends HttpServlet {
 		
 		//View Resolve를 만든다.
 		if(!viewPage.equals(null) && !viewPage.endsWith(".do")) { //endsWith -> 끝나는부분
+			
+			if(viewPage.startsWith("ajax")) { //ajax를 사용하는 뷰리졸브
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.append(viewPage.substring(5));
+				return;
+			} //비동기 호출.
+			
 			viewPage = "WEB-INF/views/"+ viewPage + ".jsp"; 
 		}
 		

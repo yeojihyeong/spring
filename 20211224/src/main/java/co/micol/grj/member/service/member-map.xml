@@ -10,6 +10,9 @@
 	parameterType="co.micol.grj.member.service.MemberVO" 
 	resultType="co.micol.grj.member.service.MemberVO">
 	SELECT * FROM MEMBER WHERE ID = #{id}
+	<if test="password != null">  <!-- 동적 SQL 맵퍼 -->
+	AND PASSWORD = ${password}
+	</if>
 	</select>
 	
 	<insert id="memberInsert"
@@ -25,10 +28,19 @@
 	
 	<update id="memberUpdate"
 	parameterType="co.micol.grj.member.service.MemberVO">
-	UPDATE MEMBER SET PASSWORD = #{password},
-	TEL = #{tel}, ADDRESS = #{address}, AUTHOR = #{author}, 
-	PICTURE = #{picture}, PFILE = #{pfile} 
+	UPDATE MEMBER
+	<if test ="password != null" >SET PASSWORD = #{password} </if>
+	<if test="tel != null"> SET TEL = #{tel} </if>
+	<if test = "address != null"> SET ADDRESS = #{address} </if>
+	<if test = "author != null"> SET AUTHOR = #{author}</if> 
+	<if test = "picutre != null">SET PICTURE = #{picture}</if>
+	<if test ="pfile != null"> SET PFILE = #{pfile} </if> 
 	WHERE ID = #{id}
 	</update>
-
+	
+	<!-- ResultType이 boolean 일 경우 1 : true, 0: false -->
+	<select id="isIdCheck" parameterType="String" resultType="boolean">
+		SELECT CASE WHEN COUNT(*) = 1 THEN 0 ELSE 1 END AS ID   
+		FROM MEMBER WHERE ID = #{id}
+	</select>
 </mapper>

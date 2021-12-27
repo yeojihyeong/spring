@@ -17,4 +17,7 @@ public interface MemberMapper {
 		
 		//멤버수정
 		int memberUpdate(MemberVO vo);
+
+		//아이디 중복조회
+		boolean isIdCheck(String id);
 }

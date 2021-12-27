@@ -44,4 +44,9 @@ public class MemberServiceImpl implements MemberService {
 		return map.memberUpdate(vo);
 	}
 
+	@Override
+	public boolean isIdCheck(String id) {
+		return map.isIdCheck(id);
+	}
+
 }

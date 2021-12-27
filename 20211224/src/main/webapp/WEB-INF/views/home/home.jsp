@@ -13,6 +13,7 @@
 		</div>
 		<div>
 			<a href="memberList.do">멤버목록보기</a>
+			<a href="memberJoinForm.do">멤버가입</a>
 		</div>
 	</div>
 </body>
