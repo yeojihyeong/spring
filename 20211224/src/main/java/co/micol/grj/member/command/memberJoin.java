@@ -30,8 +30,7 @@ public class memberJoin implements Command {
 			MultipartRequest multi = new MultipartRequest(request, filPath, size, "utf-8",new DefaultFileRenamePolicy());
 			String uploadFileName = multi.getFilesystemName("file"); //물리파일명
 			String sourceFileName = multi.getOriginalFileName("file");  //원본파일명
-			System.out.println(uploadFileName + "=============");
-			System.out.println(sourceFileName + "=============");
+			
 			
 			vo.setId(multi.getParameter("id")); //form 에서 text형식의 데이터 담기
 			vo.setPassword(multi.getParameter("password")); 
